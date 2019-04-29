@@ -19,13 +19,14 @@ passed_count = 0
 def cleanFile(fileName):
 	with fileinput.FileInput(fileName, inplace=True) as f:
 		    for line in f:
-		    	line = line.replace("non-void-command ", "")
-	    		line = line.replace("command ", "")
-	    		line = line.replace("set ","")
-	    		line = line.replace("factory ","")
-	    		line = line.replace("collaborator ", "")
-	    		line = line.replace("stateless ", "")
-	    		print(line, end='')
+		    	if not '<?xml' in line:
+		    		line = line.replace("non-void-command ", "")
+	    			line = line.replace("command ", "")
+	    			line = line.replace("set ","")
+	    			line = line.replace("factory ","")
+	    			line = line.replace("collaborator ", "")
+	    			line = line.replace("stateless ", "")
+	    			print(line, end='')
 	file = open(fileName)
 	contents = file.read().strip()
 	file.close()
